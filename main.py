@@ -4,13 +4,13 @@ SWIDTH = 127
 SHEIGHT = 31
 TILE_WIDTH = 4
 
-CTRL_SENS = 4
+CTRL_SENS = 3
 
 BEGIN_COORDS = [15, 15]
 BEGIN_DIR = [1, 0]
 
 lcd_screen = pyb.LCD("X")
-lcd_screen.light(True)
+# lcd_screen.light(True)
 lcd_screen.fill(0)
 lcd_screen.show()
 
@@ -80,8 +80,8 @@ class Snake(Tile):
 
     def _fall_out(self):
         x, y = self.head
-        out_width = x > SWIDTH or x < -TILE_WIDTH
-        out_height = y > SHEIGHT or y < -TILE_WIDTH
+        out_width = x > SWIDTH + TILE_WIDTH or x < -TILE_WIDTH
+        out_height = y > SHEIGHT + TILE_WIDTH or y < -TILE_WIDTH
         return  out_width or out_height
 
     def isdead(self):
